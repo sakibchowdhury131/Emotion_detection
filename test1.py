@@ -31,8 +31,8 @@ y_train = dataset.iloc[:, 0].values
 keywords = []
 
 for i in range (0,30000):
-    if not(y[i] in keywords):
-        keywords.append(y[i])
+    if not(y_train[i] in keywords):
+        keywords.append(y_train[i])
 
 
 
