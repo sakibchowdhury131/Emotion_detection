@@ -140,3 +140,34 @@ print('Negative predictions:', neg_count)
 print('Real positive:', real_pos)
 print('Real neutral:', real_neu)
 print('Real negative:', real_neg)
+
+
+
+# testing using self made comments
+cmnt = ["@sakibchowdhury : you are bullshit ", 
+        "there is no God",
+        "i'm really sad",
+        "your service is good", 
+        "life is beautiful",
+        "i really hate you sakib",
+        "go to hell",
+        "God sees us",
+        "we should love everyone",
+        "we eat",
+        "you are amazing",
+        "you are disgusting"]
+
+for i in range(0, len(cmnt)):
+        comment = re.sub('[^a-zA-Z0-9\s@]', ' ', cmnt[i])
+
+        comment = comment.lower()
+        comment = comment.split()
+
+        comment = [j for j in comment if len(j) > 1]
+
+        comment = ' '.join(word for word in comment if not word.startswith('@'))
+        cmnt[i] = comment
+
+X_samp = tokenizer.texts_to_sequences(cmnt)
+X_samp = pad_sequences(X_samp,31)
+model.predict(X_samp)
