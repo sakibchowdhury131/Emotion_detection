@@ -1,0 +1,182 @@
+Steps:
+
+The steps for deep learning methods and generic machine learning methods are almost similar for the task. But a few more steps are performed in deep learning method. 
+
+
+For generic Machine Learning Methods: 
+
+Step1: Reading the dataset
+
+Step2: performing some basic filtering - keeping only words . other unnecessary parts are removed
+
+Step3: feature extraction by converting the strings into TF-IDF  Vectors using TF-IDF Vectorization method
+
+Step4: Fitting the model
+
+Step5: Analyzing Results
+
+
+
+
+
+For Deep Learning Techniques (no pre trained embedding)
+
+Step1: Reading the Dataset
+
+Step2: performing some basic filtering - keeping only words . other unnecessary parts are removed
+
+Step3: Tokenization → converting the strings into tokens
+
+Step4: Converting the tokens into sequences (vectors)
+
+Step5: Padding the sequences → so that all the vectors are equal length
+
+Step6: Building the model(embedding / Features are extracted during training because of keras embedding layer which is now set to trainable. )
+
+Step7: Fitting the model
+
+Step8: Analyzing Results
+
+
+
+
+
+
+For Deep Learning Techniques (using pre trained embedding)
+
+Step1: Reading the Dataset
+
+Step2: performing some basic filtering - keeping only words . other unnecessary parts are removed
+
+Step3: Pretraining the entire dataset using embedding techniques for feature extraction. In this step, every word is associated with a vector. Similar words are geometrically nearer in the hyperplane. After this step we can consider each word as a constant vector. And save the model in the memory as a file.
+
+Step4: Tokenization → converting the strings into tokens
+
+Step5: Converting the tokens into sequences
+
+Step6: Generating the embedding matrix from the pretrained model
+
+Step7: Building the model (now keras embedding layer is feeded with the pretrained embedding matrix and it is now non-trainable hence reducing training time and less parameters to train)
+
+Step8: Training the model
+
+Step9: Analyzing the results
+
+
+
+
+
+Results: 
+
+Generic Models
+
+
+KNN: 
+Accuracy: 0.861
+Precision: 0.895
+Recall: 0.929
+F-measure: 0.912
+
+
+Decision Tree: 
+Accuracy: 0.837
+Precision: 0.890
+Recall: 0.901
+F-measure: 0.895
+
+
+
+Logistic Regression: 
+
+Accuracy: 0.849
+Precision: 0.860
+Recall: 0.962
+F-measure: 0.908
+
+
+Random Forest: 
+Accuracy: 0.863
+Precision: 0.895
+Recall: 0.932
+F-measure: 0.913
+
+
+Naive Bayes: 
+Accuracy: 0.734
+Precision: 0.865
+Recall: 0.777
+F-measure: 0.819
+
+
+
+Deep Learning Models (Without Pre trained Embeddings): 
+
+
+Model Architecture: 
+
+Embedding Layer(non-trained) →  Dropout → LSTM Layer1 → LSTM Layer2 → Dense Layer
+
+
+
+
+loss: 4.8964
+accuracy: 0.7731
+val_loss: 4.9326
+val_accuracy: 0.7709
+
+
+Deep Learning Models (With Pretrained Embeddings)
+
+Model Architecture: 
+Embedding Layer(trained) →  GRU → Dense Layer
+
+
+SG+GRU: 
+
+Overall analysis
+
+
+Parameters: 
+Dataset = stanford dataset
+Batch size = 128
+Positive threshold = 0.4
+EMBEDDING_DIM = 100
+Max_length of padding = 300
+Activation = tanh (hyperbolic tangent)
+GRU units = 32
+Validation split = 0.2
+
+
+ Report
+
+
+Best Case: 
+loss : 0.4312
+Accuracy: 0.8202
+Val_loss: 0.4334
+Val_accuracy: 0.8218
+
+
+CBOW+GRU: 
+
+Overall analysis
+Parameters
+Dataset = stanford dataset
+Batch size = 128
+Positive threshold = 0.4
+EMBEDDING_DIM = 100
+Max_length of padding = 300
+Activation = tanh (hyperbolic tangent)
+GRU units = 32
+Validation split = 0.2
+
+Report
+Loss: 0.4452 
+accuracy: 0.7997
+val_loss: 0.4500
+val_accuracy: 0.7994
+
+
+All Codes : https://github.com/sakibchowdhury131/Emotion_detection
+
+
