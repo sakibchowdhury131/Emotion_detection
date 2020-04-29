@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 
 
 
-dataset = read_data('https://github.com/sakibchowdhury131/Emotion_detection/tree/master/stanfordSentimentTreebank')
+dataset = read_data('/media/sakib/alpha/work/EmotionDetectionDir/pretrained embedding/word2vec_embedding/stanfordSentimentTreebank')
 dataset['sentiment_values'] = pd.to_numeric(dataset['sentiment_values'], downcast = 'float')
 dataset['sentiment_values'] = (dataset['sentiment_values'] >= 0.4).astype(float)
 
