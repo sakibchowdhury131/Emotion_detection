@@ -109,6 +109,11 @@ F-measure: 0.819
 
 
 
+
+
+
+
+
 Deep Learning Models (Without Pre trained Embeddings): 
 
 
@@ -119,10 +124,15 @@ Embedding Layer(non-trained) →  Dropout → LSTM Layer1 → LSTM Layer2 → De
 
 
 
-loss: 4.8964
+ loss: 4.8964
 accuracy: 0.7731
 val_loss: 4.9326
 val_accuracy: 0.7709
+Precision: 0.776
+Recall: 0.996
+F-measure: 0.873
+
+
 
 
 Deep Learning Models (With Pretrained Embeddings)
@@ -155,6 +165,10 @@ loss : 0.4312
 Accuracy: 0.8202
 Val_loss: 0.4334
 Val_accuracy: 0.8218
+Precision: 0.819
+Recall: 0.957
+F-measure: 0.883
+
 
 
 CBOW+GRU: 
@@ -170,11 +184,16 @@ Activation = tanh (hyperbolic tangent)
 GRU units = 32
 Validation split = 0.2
 
+
 Report
 Loss: 0.4452 
 accuracy: 0.7997
 val_loss: 0.4500
 val_accuracy: 0.7994
+Precision: 0.795
+Recall: 0.964
+F-measure: 0.872
+
 
 
 All Codes : https://github.com/sakibchowdhury131/Emotion_detection
