@@ -199,3 +199,35 @@ F-measure: 0.872
 All Codes : https://github.com/sakibchowdhury131/Emotion_detection
 
 
+Sg+decisiontree
+
+Accuracy: 0.833
+Precision: 0.900
+Recall: 0.882
+F-measure: 0.891
+
+
+
+Logistic regression+sg
+
+Accuracy: 0.786
+Precision: 0.802
+Recall: 0.959
+F-measure: 0.873
+
+
+NB+SG
+Accuracy: 0.619
+Precision: 0.832
+Recall: 0.631
+F-measure: 0.718
+
+
+
+ Random forest+sg
+Accuracy: 0.853
+Precision: 0.888
+Recall: 0.926
+F-measure: 0.907
+
+
