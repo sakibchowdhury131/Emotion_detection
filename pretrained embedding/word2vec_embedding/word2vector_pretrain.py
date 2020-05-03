@@ -8,7 +8,7 @@ import gensim.models
 
 
 #read the dataset
-dataset = read_data ('/media/sakib/alpha/work/EmotionDetectionDir/word2vec_embedding/stanfordSentimentTreebank') 
+dataset = read_data ('/media/sakib/alpha/work/EmotionDetectionDir/stanfordSentimentTreebank') 
 
 #create sentences
 class MyCorpus(object):
@@ -34,7 +34,7 @@ w2v = gensim.models.Word2Vec(sentences=sentences, min_count = 1 , size = 100,ite
 #         break
 #     print(word)
     
-# w2v.most_similar ('that')
+# w2v.most_similar ('happy')
 
 
 # print(w2v.wv.index2word[0], w2v.wv.index2word[1], w2v.wv.index2word[2])

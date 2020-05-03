@@ -9,11 +9,16 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 import pandas as pd
 from keras.models import Sequential
-from keras.layers import Dense,Embedding,LSTM,GRU
-from keras.layers.embeddings import Embedding
+from keras.layers import Dense,Embedding,GRU
 from keras.initializers import Constant
 import matplotlib.pyplot as plt
-dataset = read_data ('/media/sakib/alpha/work/EmotionDetectionDir/word2vec_embedding/stanfordSentimentTreebank') 
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import f1_score
+
+
+dataset = read_data ('/media/sakib/alpha/work/EmotionDetectionDir/stanfordSentimentTreebank') 
 # binarizing sentiments
 dataset['sentiment_values'] = pd.to_numeric(dataset['sentiment_values'], downcast = 'float')
 dataset['sentiment_values'] = (dataset['sentiment_values'] >= 0.4).astype(float)
@@ -102,7 +107,7 @@ model_nn.summary()
 VALIDATION_SPLIT = 0.2
 
 indices = np.arange(review_pad.shape[0])
-np.random.shuffle(indices)
+#np.random.shuffle(indices)
 review_pad = review_pad[indices]
 sentiment = sentiment[indices]
 num_validation_samples = int(VALIDATION_SPLIT * review_pad.shape[0])
@@ -114,7 +119,12 @@ y_test = sentiment[-num_validation_samples:]
 
 
 history = model_nn.fit(X_train,y_train,batch_size = 128, epochs = 25 , validation_data = (X_test,y_test),verbose = 1)
-
+y_pred = model_nn.predict(X_test)
+y_pred = y_pred>0.5
+print('Accuracy: %.3f' % accuracy_score(y_test, y_pred))
+print('Precision: %.3f' % precision_score(y_test, y_pred))
+print('Recall: %.3f' % recall_score(y_test, y_pred))
+print('F-measure: %.3f' % f1_score(y_test, y_pred))
 # Plot training & validation accuracy values
 plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])
