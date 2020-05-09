@@ -10,7 +10,7 @@ import gensim
 import os
 import numpy as np
 
-def create_word2vec(texts,EMBEDDING_DIM = 100,window = 5,workers = 4, min_count = 4,sg=1):
+def create_word2vec(directory,texts,EMBEDDING_DIM = 100,window = 5,workers = 4, min_count = 4,sg=1):
     tokens = []
     for line in texts:
         words = word_tokenize(line)
@@ -18,7 +18,7 @@ def create_word2vec(texts,EMBEDDING_DIM = 100,window = 5,workers = 4, min_count 
     
     model = gensim.models.Word2Vec(sentences = tokens, size = EMBEDDING_DIM, window = 5, workers = 4, min_count = 4,sg=1)
     print('Saving word2vec model in the disk')
-    directory = '/media/sakib/alpha/work/EmotionDetectionDir/Final_codes/embeddings'
+    
     filename = 'embeddings_w2v.txt'
     model.wv.save_word2vec_format(directory+'/'+filename, binary = False)
 

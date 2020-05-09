@@ -133,10 +133,10 @@ def sswe_model(train_texts,train_labels):
 
 # Exporting the Embedding Matrix and Vocabulary
     
-def save_sswe(model,training_word_index):
+def save_sswe(model,training_word_index,directory):
     """ export embeddings to file"""
     model_identifier = 'sswe'
-    directory = '/media/sakib/alpha/work/EmotionDetectionDir/Final_codes/embeddings'
+    
     embedding_weights=pd.DataFrame(model.layers[0].get_weights()[0]).reset_index()
     word_indices_df=pd.DataFrame.from_dict(training_word_index,orient='index').reset_index()
     word_indices_df.columns=['word','index']

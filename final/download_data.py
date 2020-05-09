@@ -12,7 +12,7 @@ import urllib.request
 
 
 
-def download_data(download_url='http://cs.stanford.edu/people/alecmgo/trainingandtestdata.zip', filename='downloaded_data.zip',directory):
+def download_data(directory,download_url='http://cs.stanford.edu/people/alecmgo/trainingandtestdata.zip', filename='downloaded_data.zip'):
     """ Download and extract data """
     
     downloaded_filename = os.path.join(directory, filename)

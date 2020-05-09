@@ -29,7 +29,7 @@ import pandas as pd
 
 #loading data
 print('Step1: Loading Embedding training Dataset...')
-working_directory = '/media/sakib/alpha/work/EmotionDetectionDir/Final_codes'
+working_directory = '/media/sakib/alpha/work/EmotionDetectionDir/git'
 data_folder = 'data'
 dataset_embedding = load_data_embedding(working_directory+'/'+data_folder+'/'+'training.1600000.processed.noemoticon.csv')
 print('Step2: Shuffling data...')
@@ -41,14 +41,14 @@ labels = read_labels(dataset_embedding)
 # building word2vec model
 print('Step3: Building word2vec model...')
 EMBEDDING_DIM = 100
-w2v = word2vec.create_word2vec(texts,min_count = 1,EMBEDDING_DIM = EMBEDDING_DIM)
+w2v = word2vec.create_word2vec(texts,min_count = 1,EMBEDDING_DIM = EMBEDDING_DIM,directory = '/media/sakib/alpha/work/EmotionDetectionDir/git/embeddings')
 
 
 
 #building sswe model
 print('Step4: Building sswe model...')
 sswe_model,training_word_index = sswe.sswe_model(texts, labels)
-embedding_weights, word_indices_df, merged = sswe.save_sswe(sswe_model,training_word_index)
+embedding_weights, word_indices_df, merged = sswe.save_sswe(sswe_model,training_word_index,directory = '/media/sakib/alpha/work/EmotionDetectionDir/git/embeddings')
 print('Embedding Layers are trained.')
 
 
@@ -93,12 +93,12 @@ X_train, X_test, y_train, y_test = train_test_split(review_pad, y, test_size = 0
 # word2vec Embedding Matrix
 print('Step9: Generating word2vec embedding matrix...')
 num_words = len(tokenizer_word_index) + 1
-embedding_matrix = word2vec.load_word2vec('/media/sakib/alpha/work/EmotionDetectionDir/Final_codes/embeddings_w2v.txt', tokenizer_word_index=tokenizer_word_index, EMBEDDING_DIM=EMBEDDING_DIM)
+embedding_matrix = word2vec.load_word2vec('/media/sakib/alpha/work/EmotionDetectionDir/git/embeddings/embeddings_w2v.txt', tokenizer_word_index=tokenizer_word_index, EMBEDDING_DIM=EMBEDDING_DIM)
 
 
 # training the word2vec model with lstm
 print('Step10: designing lstm+w2v model...')
-model_directory = '/media/sakib/alpha/work/EmotionDetectionDir/Final_codes/models'
+model_directory = '/media/sakib/alpha/work/EmotionDetectionDir/git/models'
 w2v_lstm = designing_network.model_architecture_word2vec(embedding_matrix, num_words,EMBEDDING_DIM = EMBEDDING_DIM , max_length = max_length)
 w2v_lstm, history = designing_network.fit_network(w2v_lstm, X_train, X_test, y_train, y_test)
 designing_network.save_network_model(w2v_lstm, modelname = 'w2v_lstm',directory = model_directory)
@@ -113,7 +113,7 @@ embedding_matrix_sswe = sswe.load_sswe(filename = sswe_embedding_filename, token
 
 # training the sswe model with lstm
 print('Step12: designing lstm+sswe model...')
-model_directory = '/media/sakib/alpha/work/EmotionDetectionDir/Final_codes/sswe'
+model_directory = '/media/sakib/alpha/work/EmotionDetectionDir/git/models'
 sswe_lstm = designing_network.model_architecture_sswe(embedding_matrix_sswe, num_words,EMBEDDING_DIM = 50 , max_length = max_length)
 sswe_lstm, history = designing_network.fit_network(sswe_lstm, X_train, X_test, y_train, y_test)
 designing_network.save_network_model(sswe_lstm, modelname = 'sswe_lstm',directory = model_directory)
