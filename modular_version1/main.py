@@ -172,7 +172,8 @@ embedding_matrix_glove = glove_file.load_glove(working_directory+'/'+'data'+'/'+
 # training the glove model with lstm
 print('Step15: designing lstm+w2v model...')
 model_directory = working_directory+'/'+'models'
-glove_lstm = designing_network.model_architecture_word2vec(embedding_matrix_glove, num_words,EMBEDDING_DIM = EMBEDDING_DIM , max_length = max_length)
+glove_lstm = designing_network.model_architecture_glove(embedding_matrix_glove, num_words,EMBEDDING_DIM = EMBEDDING_DIM , max_length = max_length)
 glove_lstm, history = designing_network.fit_network(glove_lstm, X_train, X_test, y_train, y_test)
 designing_network.save_network_model(glove_lstm, modelname = 'glove_lstm',directory = model_directory)
 # loaded_model = designing_network.load_network_model( directory = working_directory+'/'+'models', jsonfile = 'glove_lstm.json', h5file = 'glove_lstm.h5')
+

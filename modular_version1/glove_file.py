@@ -32,3 +32,5 @@ def load_glove(filename,tokenizer_word_index,EMBEDDING_DIM):
             embedding_matrix[i] = embedding_vector
             
     return embedding_matrix
+
+

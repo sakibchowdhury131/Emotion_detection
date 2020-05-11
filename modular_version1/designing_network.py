@@ -30,6 +30,28 @@ def model_architecture_word2vec(embedding_matrix,num_words,EMBEDDING_DIM = 100,m
     return model_nn
 
 
+
+
+def model_architecture_glove(embedding_matrix,num_words,EMBEDDING_DIM = 100,max_length = 150):
+    model_nn = Sequential()
+    embedding_layer = Embedding(num_words,
+                                EMBEDDING_DIM,
+                                embeddings_initializer = Constant(embedding_matrix),
+                                input_length = max_length,
+                                trainable = False)
+    
+    
+    model_nn.add (embedding_layer)
+    model_nn.add(LSTM(100, return_sequences=True, dropout=0.3, recurrent_dropout=0.2))
+    model_nn.add(LSTM(100, dropout=0.3, recurrent_dropout=0.2))
+    model_nn.add(Dense(3, activation = 'sigmoid'))
+    
+    model_nn.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model_nn.summary()
+    return model_nn
+
+
+
 def model_architecture_sswe(embedding_matrix,num_words,EMBEDDING_DIM = 50,max_length = 150):
     model_nn = Sequential()
     embedding_layer = Embedding(num_words,
