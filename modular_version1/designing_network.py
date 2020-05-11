@@ -96,3 +96,10 @@ def load_network_model(directory,jsonfile, h5file):
     loaded_model.load_weights(directory+'/'+h5file)
     print("Loaded model from disk")
     return loaded_model
+
+def analyze_performance(loaded_model,X_test, y_test):
+    
+    # evaluate loaded model on test data
+    loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
+    score = loaded_model.evaluate(X_test, y_test, verbose=1)
+    return score

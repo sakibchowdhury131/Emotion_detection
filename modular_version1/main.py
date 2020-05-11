@@ -146,7 +146,8 @@ w2v_lstm = designing_network.model_architecture_word2vec(embedding_matrix_w2v, n
 w2v_lstm, history = designing_network.fit_network(w2v_lstm, X_train, X_test, y_train, y_test)
 designing_network.save_network_model(w2v_lstm, modelname = 'w2v_lstm',directory = model_directory)
 # loaded_model = designing_network.load_network_model( directory = working_directory+'/'+'models', jsonfile = 'w2v_lstm.json', h5file = 'w2v_lstm.h5')
- 
+# score = designing_network.analyze_performance(loaded_model, X_test, y_test)
+# print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1]*100))
 
 # sswe embedding matrix
 print('Step12: Generating sswe embedding matrix...')
@@ -159,8 +160,9 @@ print('Step13: designing lstm+sswe model...')
 sswe_lstm = designing_network.model_architecture_sswe(embedding_matrix_sswe, num_words,EMBEDDING_DIM = 50 , max_length = max_length)
 sswe_lstm, history = designing_network.fit_network(sswe_lstm, X_train, X_test, y_train, y_test)
 designing_network.save_network_model(sswe_lstm, modelname = 'sswe_lstm',directory = model_directory)
-# loaded_model = designing_network.load_network_model( directory = working_directory+'/'+'models', jsonfile = 'w2v_lstm.json', h5file = 'w2v_lstm.h5')
-
+# loaded_model = designing_network.load_network_model( directory = working_directory+'/'+'models', jsonfile = 'sswe_lstm.json', h5file = 'sswe_lstm.h5')
+# score = designing_network.analyze_performance(loaded_model, X_test, y_test)
+# print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1]*100))
 
 # glove embedding matrix
 print ('Step 14: Generating glove embedding matrix...')
@@ -174,4 +176,5 @@ glove_lstm = designing_network.model_architecture_glove(embedding_matrix_glove, 
 glove_lstm, history = designing_network.fit_network(glove_lstm, X_train, X_test, y_train, y_test)
 designing_network.save_network_model(glove_lstm, modelname = 'glove_lstm',directory = model_directory)
 # loaded_model = designing_network.load_network_model( directory = working_directory+'/'+'models', jsonfile = 'glove_lstm.json', h5file = 'glove_lstm.h5')
-
+# score = designing_network.analyze_performance(loaded_model, X_test, y_test)
+# print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1]*100))
