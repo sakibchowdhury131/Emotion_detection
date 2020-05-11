@@ -16,7 +16,7 @@ working_directory = '/media/sakib/alpha/work/EmotionDetectionDir/git'
 data_folder = r'/media/sakib/alpha/work/EmotionDetectionDir/git/data'
 embedding_folder = r'/media/sakib/alpha/work/EmotionDetectionDir/git/embeddings'
 models_folder = r'/media/sakib/alpha/work/EmotionDetectionDir/git/models'
-
+model_directory = working_directory+'/'+'models'
 
 
 def change_base_dir(base_dir_path):
@@ -141,7 +141,7 @@ embedding_matrix_w2v = word2vec.load_word2vec(working_directory+'/'+'embeddings'
 
 # training the word2vec model with lstm
 print('Step11: designing lstm+w2v model...')
-model_directory = working_directory+'/'+'models'
+
 w2v_lstm = designing_network.model_architecture_word2vec(embedding_matrix_w2v, num_words,EMBEDDING_DIM = EMBEDDING_DIM , max_length = max_length)
 w2v_lstm, history = designing_network.fit_network(w2v_lstm, X_train, X_test, y_train, y_test)
 designing_network.save_network_model(w2v_lstm, modelname = 'w2v_lstm',directory = model_directory)
@@ -156,7 +156,6 @@ embedding_matrix_sswe = sswe.load_sswe(filename = sswe_embedding_filename, token
 
 # training the sswe model with lstm
 print('Step13: designing lstm+sswe model...')
-model_directory = working_directory+'/models'
 sswe_lstm = designing_network.model_architecture_sswe(embedding_matrix_sswe, num_words,EMBEDDING_DIM = 50 , max_length = max_length)
 sswe_lstm, history = designing_network.fit_network(sswe_lstm, X_train, X_test, y_train, y_test)
 designing_network.save_network_model(sswe_lstm, modelname = 'sswe_lstm',directory = model_directory)
@@ -171,7 +170,6 @@ embedding_matrix_glove = glove_file.load_glove(working_directory+'/'+'data'+'/'+
 
 # training the glove model with lstm
 print('Step15: designing lstm+w2v model...')
-model_directory = working_directory+'/'+'models'
 glove_lstm = designing_network.model_architecture_glove(embedding_matrix_glove, num_words,EMBEDDING_DIM = EMBEDDING_DIM , max_length = max_length)
 glove_lstm, history = designing_network.fit_network(glove_lstm, X_train, X_test, y_train, y_test)
 designing_network.save_network_model(glove_lstm, modelname = 'glove_lstm',directory = model_directory)
