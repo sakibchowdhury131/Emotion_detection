@@ -62,6 +62,7 @@ from keras.preprocessing.sequence import pad_sequences
 from keras.optimizers import Adam
 from nltk.tokenize import word_tokenize
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 
@@ -204,6 +205,18 @@ lstm_glove_lstm_sswe, history = designing_network.fit_network_parallel(model = m
                                                               X_test = X_test, 
                                                               y_train = y_train, 
                                                               y_test = y_test)
+
+
+
+
+# Plot training & validation loss values
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Model loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Test'], loc='upper left')
+plt.show()
 
 designing_network.save_network_model(lstm_glove_lstm_sswe, modelname = 'lstm_glove_lstm_sswe',directory = model_directory)
 loaded_model = designing_network.load_network_model( directory = working_directory+'/'+'models', jsonfile = 'lstm_glove_lstm_sswe.json', h5file = 'lstm_glove_lstm_sswe.h5')
